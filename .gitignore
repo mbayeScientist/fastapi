@@ -1,0 +1,6 @@
+.pytest_cache/
+.idea/
+./tests_api/__pycache__
+./__pycache__
+*.pyc
+__pycache__
