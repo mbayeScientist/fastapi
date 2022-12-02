@@ -11,6 +11,7 @@ black = "*"
 pydantic = "*"
 pytest = "*"
 flake8 = "*"
+httpx = "*"
 
 [dev-packages]
 
