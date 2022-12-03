@@ -1,6 +1,10 @@
 
 # my-YAML-course
 
+
+![Logo](https://github.com/emarco177/my-YAML-course/blob/main/static/yaml-course-logo.png)
+
+
 An interface for a YAML databse.
 
 This is a fastapi webserver that allows us to perform CRUD operations on YAML files.
