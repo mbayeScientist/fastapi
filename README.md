@@ -10,6 +10,11 @@ An interface for a YAML databse.
 This is a fastapi webserver that allows us to perform CRUD operations on YAML files.
 and can be refered to as a YAMLhouse or a YAML warehouse.
 
+## Demo
+
+![Alt Text](https://github.com/emarco177/my-YAML-course/blob/main/static/swagger-readme.gif)
+
+
 ## API Reference
 
 #### Get all items

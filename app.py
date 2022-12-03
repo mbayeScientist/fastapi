@@ -3,7 +3,8 @@ import yaml
 from fastapi.applications import FastAPI
 from starlette.responses import RedirectResponse
 
-from api import yaml_crud, validate
+from api.yaml_crud import router as yaml_crud_router
+from api.validate import router as validate_router
 
 app = FastAPI(openapi_url="/static/swagger.yaml")
 
@@ -24,8 +25,8 @@ def custom_openapi():
 
 app.openapi = custom_openapi
 
-app.include_router(yaml_crud.router)
-app.include_router(validate.router)
+app.include_router(validate_router)
+app.include_router(yaml_crud_router)
 
 
 @app.get("/")

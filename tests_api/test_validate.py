@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 import pytest
-import app
+from app import app as fastapi_app
 
-client = TestClient(app.app)
+client = TestClient(fastapi_app)
 
 valid_inline_yamls = ["a:b", "a:2", "-----", "a:a:{a:{1,2,3}}"]
 API = "/api"
