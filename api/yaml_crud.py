@@ -37,7 +37,10 @@ def read_yaml(yaml_doc_id: str):
     dict_with_id = {"id": yaml_doc_id}
     with open(f"yaml_db/{yaml_doc_id}.yaml", "r") as f:
         yaml_data = yaml.load(f, Loader=yaml.loader.Loader)
-        returned_doc = {**dict_with_id, **yaml_data}
+        if type(yaml_data) == str:
+            returned_doc = {**dict_with_id, "data": yaml_data}
+        else:
+            returned_doc = {**dict_with_id, **yaml_data}
 
     return returned_doc
 

@@ -3,10 +3,27 @@ openapi: 3.0.2
 info:
   title: YamlWareHouse
   version: 0.1.0
+tags:
+  - name: validate
+    description: Validate your YAML
+  - name: YAML
+    description: CRUD operations for YAML DB
+servers:
+  - url: http://0.0.0.0:8000/api
 paths:
   "/validate":
     post:
+      tags:
+        - validate
       summary: Validate Yaml document correctness
+      requestBody: &YAMLRequestBody
+        description: YAML document payload
+        required: true
+        content:
+          application/x-yaml:
+            schema:
+              required: true
+              type: string
       operationId: validate_validate_post
       responses:
         '200':
@@ -16,6 +33,8 @@ paths:
               schema: {}
   "/yaml":
     get:
+      tags:
+        - YAML
       summary: Get yaml docs List
       operationId: read_yaml_list_yaml_get
       responses:
@@ -25,7 +44,11 @@ paths:
             application/json:
               schema: {}
     post:
+      tags:
+        - YAML
       summary: Create Yaml doc
+      requestBody:
+        <<: *YAMLRequestBody
       operationId: create_yaml_yaml_post
       responses:
         '201':
@@ -33,8 +56,11 @@ paths:
           content:
             application/json:
               schema: {}
+
   "/yaml/{yaml_doc_id}":
     get:
+      tags:
+        - YAML
       summary: Get yaml doc by Id
       operationId: read_yaml_yaml__yaml_doc_id__get
       parameters:
@@ -57,6 +83,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/HTTPValidationError"
     put:
+      tags:
+        - YAML
       summary: Update Yaml
       operationId: update_yaml_yaml__yaml_doc_id__put
       parameters:
@@ -66,6 +94,8 @@ paths:
           type: string
         name: yaml_doc_id
         in: path
+      requestBody:
+        <<: *YAMLRequestBody
       responses:
         '200':
           description: Successful Response
@@ -79,6 +109,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/HTTPValidationError"
     delete:
+      tags:
+        - YAML
       summary: Delete Yaml
       operationId: delete_yaml_yaml__yaml_doc_id__delete
       parameters:

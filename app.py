@@ -1,6 +1,8 @@
 import uvicorn
 import yaml
 from fastapi.applications import FastAPI
+from starlette.responses import RedirectResponse
+
 from api import yaml_crud, validate
 
 app = FastAPI(openapi_url="/static/swagger.yaml")
@@ -24,6 +26,12 @@ app.openapi = custom_openapi
 
 app.include_router(yaml_crud.router)
 app.include_router(validate.router)
+
+
+@app.get("/")
+async def redirect():
+    response = RedirectResponse(url="/docs")
+    return response
 
 
 if __name__ == "__main__":
