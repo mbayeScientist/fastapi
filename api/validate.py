@@ -18,6 +18,8 @@ router = APIRouter(
 async def validate(request: Request) -> Dict[str, str]:
     logger.info(f"Validating Yaml from user")
     raw_body = await request.body()
+    logger.info(f"{raw_body=}")
+
     try:
         yaml.load(raw_body, Loader=yaml.Loader)
     except yaml.YAMLError as e:
