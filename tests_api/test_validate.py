@@ -1,7 +1,6 @@
 from fastapi.testclient import TestClient
 import pytest
 from app import app as fastapi_app
-import conftest
 
 client = TestClient(fastapi_app)
 
