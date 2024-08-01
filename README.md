@@ -1,5 +1,5 @@
 
-#inspiré par le cours de Eden Udemy(Merci)
+# Mouhamed MBAYE (inspiré par le cours de Eden Udemy) 
 
 ## API Reference
 
@@ -9,21 +9,9 @@
   POST /api/yamls
 ```
 
-| Payload | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-|  YAML| `data-raw` (x-yaml header) | **Required**. Your YAML file |
-
-#### Validates the YAML and saves it in the DB if exists (returns document uuid)
-
 ```http
   GET /api/yamls/${id}
 ```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of document to fetch |
-
-#### Returns the YAML document as a JSON (if exists)
 
 
 ## Environment Variables

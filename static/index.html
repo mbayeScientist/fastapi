@@ -33,7 +33,11 @@
                 <button type="submit" class="btn btn-primary">Créer</button>
             </form>
         </div>
-
+        <div>
+            <h2>Liste des documents YAML</h2>
+            <button class="btn btn-info mb-3" id="list-yamls">Charger la liste des documents</button>
+            <ul class="list-group" id="yaml-list"></ul>
+        </div>
         <!-- Formulaire pour lire un document YAML -->
         <div class="mb-4">
             <h2>Lire un document YAML</h2>
@@ -76,11 +80,6 @@
         </div>
 
         <!-- Liste des documents YAML -->
-        <div>
-            <h2>Liste des documents YAML</h2>
-            <button class="btn btn-info mb-3" id="list-yamls">Charger la liste des documents</button>
-            <ul class="list-group" id="yaml-list"></ul>
-        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
