@@ -119,6 +119,7 @@
                 const result = await response.json();
                 if (response.ok) {
                     showAlert('Document créé avec succès', 'success');
+                    document.getElementById('create-yaml').value = '';
                 } else {
                     showAlert(`Erreur: ${result.detail}`, 'danger');
                 }
@@ -156,6 +157,7 @@
                 const result = await response.json();
                 if (response.ok) {
                     showAlert('Document mis à jour avec succès', 'success');
+                    
                 } else {
                     showAlert(`Erreur: ${result.detail}`, 'danger');
                 }
