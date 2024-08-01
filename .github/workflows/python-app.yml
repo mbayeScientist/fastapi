@@ -27,5 +27,5 @@ jobs:
         pipenv install --system
     - name: Run tests with pytest
       run: |
-        export PYTHONPATH=.
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
         pipenv run pytest . -s -v
