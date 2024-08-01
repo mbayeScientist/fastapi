@@ -8,6 +8,7 @@ from api.yaml_crud import router as yaml_crud_router
 from api.validate import router as validate_router
 from log_config import LogConfig
 import uvicorn
+from starlette.responses import RedirectResponse 
 # Initialisation de l'application FastAPI avec l'URL de l'OpenAPI
 app = FastAPI(openapi_url="/static/swagger.yaml")
 
