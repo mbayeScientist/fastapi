@@ -1,0 +1,16 @@
+users:
+- id: 1
+  name: Alice
+  email: alice@example.com
+- id: 2
+  name: Bob
+  email: bob@example.com
+articles:
+- id: 1
+  title: Introduction to YAML
+  content: YAML is a human-readable data serialization standard...
+  author_id: 1
+- id: 2
+  title: Advanced YAML Techniques
+  content: In this article, we will explore advanced techniques in YAML...
+  author_id: 2

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des documents YAML</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Gestion des documents YAML</h1>
+        <hr>
+
+        <!-- Formulaire pour créer un document YAML -->
+        <div class="mb-4">
+            <h2>Créer un document YAML</h2>
+            <form id="create-form">
+                <div class="form-group">
+                    <label for="create-yaml">Contenu du document YAML</label>
+                    <textarea class="form-control" id="create-yaml" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Créer</button>
+            </form>
+        </div>
+
+        <!-- Formulaire pour lire un document YAML -->
+        <div class="mb-4">
+            <h2>Lire un document YAML</h2>
+            <form id="read-form">
+                <div class="form-group">
+                    <label for="read-id">ID du document YAML</label>
+                    <input type="text" class="form-control" id="read-id" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Lire</button>
+            </form>
+            <pre id="read-output" class="mt-3"></pre>
+        </div>
+
+        <!-- Formulaire pour mettre à jour un document YAML -->
+        <div class="mb-4">
+            <h2>Mettre à jour un document YAML</h2>
+            <form id="update-form">
+                <div class="form-group">
+                    <label for="update-id">ID du document YAML</label>
+                    <input type="text" class="form-control" id="update-id" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-yaml">Nouveau contenu du document YAML</label>
+                    <textarea class="form-control" id="update-yaml" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+            </form>
+        </div>
+
+        <!-- Formulaire pour supprimer un document YAML -->
+        <div class="mb-4">
+            <h2>Supprimer un document YAML</h2>
+            <form id="delete-form">
+                <div class="form-group">
+                    <label for="delete-id">ID du document YAML</label>
+                    <input type="text" class="form-control" id="delete-id" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+
+        <!-- Liste des documents YAML -->
+        <div>
+            <h2>Liste des documents YAML</h2>
+            <button class="btn btn-info mb-3" id="list-yamls">Charger la liste des documents</button>
+            <ul class="list-group" id="yaml-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = "http://localhost:8000/api/yaml";
+
+        document.getElementById('create-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const yamlContent = document.getElementById('create-yaml').value;
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-yaml'},
+                body: yamlContent
+            });
+            const result = await response.json();
+            alert(result.detail || 'Document créé avec succès');
+        });
+
+        document.getElementById('read-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const yamlId = document.getElementById('read-id').value;
+            const response = await fetch(`${apiUrl}/${yamlId}`);
+            const result = await response.json();
+            document.getElementById('read-output').textContent = JSON.stringify(result, null, 2);
+        });
+
+        document.getElementById('update-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const yamlId = document.getElementById('update-id').value;
+            const yamlContent = document.getElementById('update-yaml').value;
+            const response = await fetch(`${apiUrl}/${yamlId}`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/x-yaml'},
+                body: yamlContent
+            });
+            const result = await response.json();
+            alert(result || 'Document mis à jour avec succès');
+        });
+
+        document.getElementById('delete-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const yamlId = document.getElementById('delete-id').value;
+            await fetch(`${apiUrl}/${yamlId}`, {
+                method: 'DELETE'
+            });
+            alert('Document supprimé avec succès');
+        });
+
+        document.getElementById('list-yamls').addEventListener('click', async () => {
+            const response = await fetch(apiUrl);
+            const result = await response.json();
+            const yamlList = document.getElementById('yaml-list');
+            yamlList.innerHTML = '';
+            result.data.forEach(doc => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `ID: ${doc.id}, Contenu: ${JSON.stringify(doc)}`;
+                listItem.classList.add('list-group-item');
+                yamlList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>

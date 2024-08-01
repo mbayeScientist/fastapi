@@ -1,19 +1,5 @@
 
-# my-YAML-course
-
-
-![Logo](https://github.com/emarco177/my-YAML-course/blob/main/static/yaml-course-logo.png)
-
-
-An interface for a YAML databse.
-
-This is a fastapi webserver that allows us to perform CRUD operations on YAML files.
-and can be refered to as a YAMLhouse or a YAML warehouse.
-
-## Demo
-
-![Alt Text](https://github.com/emarco177/my-YAML-course/blob/main/static/swagger-readme.gif)
-
+#inspiré par le cours de Eden Udemy(Merci)
 
 ## API Reference
 
@@ -42,9 +28,9 @@ and can be refered to as a YAMLhouse or a YAML warehouse.
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+creer un fichier .env
 
-`PYTHONPATH` should point to the root directory of the project
+`PYTHONPATH`="repo principal"  ajouter le dans .env
 
 
 ## Run Locally
@@ -52,7 +38,7 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/emarco177/my-YAML-course
+  git clone https://github.com/mbayeScientist/fastapi.git
 ```
 
 Go to the project directory
@@ -84,9 +70,9 @@ To run tests, run the following command
 
 
 ## 🔗 Links
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.udemy.com/user/eden-marco/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eden-marco)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/EdenEmarco177)
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mouhamed-mbaye-87184a18b/)
+
 
 
 
