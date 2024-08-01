@@ -1,7 +1,9 @@
 from fastapi.testclient import TestClient
 import pytest
 from app import app as fastapi_app
-
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 client = TestClient(fastapi_app)
 
 valid_inline_yamls = ["a:b", "a:2", "-----", "a:a:{a:{1,2,3}}"]
