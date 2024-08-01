@@ -23,7 +23,7 @@ async def create_yaml(request: Request):
     yaml_uuid = str(uuid.uuid4())
     raw_body = await request.body()
     try:
-        loaded_yaml = yaml.safe_loadload(raw_body, Loader=yaml.Loader)
+        loaded_yaml = yaml.safe_load(raw_body, Loader=yaml.Loader)
         with open(f"yaml_db/{yaml_uuid}.yaml", "w") as f:
             yaml.dump(loaded_yaml, f, sort_keys=False, default_flow_style=False)
 
