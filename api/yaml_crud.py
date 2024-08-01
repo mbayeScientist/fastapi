@@ -23,7 +23,7 @@ async def create_yaml(request: Request):
     yaml_uuid = str(uuid.uuid4())
     raw_body = await request.body()
     try:
-        loaded_yaml = yaml.safe_load(raw_body, Loader=yaml.Loader)
+        loaded_yaml = yaml.load(raw_body, Loader=yaml.Loader)
         with open(f"yaml_db/{yaml_uuid}.yaml", "w") as f:
             yaml.dump(loaded_yaml, f, sort_keys=False, default_flow_style=False)
 
@@ -36,7 +36,7 @@ async def create_yaml(request: Request):
 def read_yaml(yaml_doc_id: str):
     dict_with_id = {"id": yaml_doc_id}
     with open(f"yaml_db/{yaml_doc_id}.yaml", "r") as f:
-        yaml_data = yaml.safe_load(f, Loader=yaml.loader.Loader)
+        yaml_data = yaml.load(f, Loader=yaml.loader.Loader)
         if type(yaml_data) == str:
             returned_doc = {**dict_with_id, "data": yaml_data}
         else:
@@ -49,7 +49,7 @@ def read_yaml(yaml_doc_id: str):
 async def update_yaml(yaml_doc_id: str, request: Request):
     raw_body = await request.body()
     try:
-        loaded_yaml = yaml.safe_load(raw_body, Loader=yaml.Loader)
+        loaded_yaml = yaml.load(raw_body, Loader=yaml.Loader)
     except yaml.YAMLError as e:
         raise HTTPException(status_code=422, detail="Invalid YAML")
 
@@ -84,7 +84,7 @@ def read_yaml_list():
             file_path = os.path.join(root, name)
             logger.info(f"{file_path}")
             with open(file_path, "r") as f:
-                yaml_data = yaml.safe_load(f, Loader=yaml.loader.Loader)
+                yaml_data = yaml.load(f, Loader=yaml.loader.Loader)
                 if yaml_data:
                     yaml_data["id"] = name.split(".")[0]
 
